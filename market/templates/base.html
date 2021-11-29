@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock title %}</title>
+     
+    {% block css %} 
+    {% endblock css %}
+        
+</head>
+<body>
+    
+{% include 'header.html' %}
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+        
+            <div class="alert alert-{{ category }} container col-4 mt-2" role="alert">
+                <b>{{ message.capitalize() }}</b>
+                <button type="button" class="btn-close float-end" data-bs-dismiss='alert' aria-label="Close"></button>
+            </div>
+        {% endfor %}    
+    {% endif %}        
+{% endwith %}
+{% block body %}
+
+{% endblock body %}
+<br><br><br>
+{% include 'footer.html' %}
+
+{% block js %}
+
+{% endblock js %}
+    
+</body>
+</html>
